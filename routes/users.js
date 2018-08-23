@@ -9,20 +9,6 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
-var users = [
-    {
-        id:1,
-        firstName:"firstName1",
-        lastName:'lastName1'
-    },
-    {
-        id:2,
-        firstName:"firstName2",
-        lastName:'lastName2'
-    }
-];
-var count = 2;
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.end(__filename)
@@ -37,20 +23,12 @@ router.post('/showUser',function (req, res, next) {
 });
 
 router.post("/createUser",function (req, res, next) {
-    let firstName = req.body.first_name;
-    let lastName  = req.body.last_name;
-    // count++;
+    var firstName = req.body.first_name;
+    var lastName  = req.body.last_name;
 
     connection.query('insert into user(first_name,last_name) values(?,?)',[firstName,lastName],function (err, result) {
         res.end('inset user')
     });
-    // users.push({
-    //     id:count,
-    //     firstName: firstName,
-    //     lastName: lastName,
-    // });
-    // console.log(firstName.toString());
-    // res.end(JSON.stringify(users));
 });
 router.post("/updateUser",function (req, res, next) {
     res.end("updateUser")
@@ -63,7 +41,6 @@ router.post("/showAccounts",function (req, res, next) {
         }
         res.end(transformStr(JSON.stringify(result)))
     });
-    // res.end(JSON.stringify(users))
 });
 
 router.post("/deleteUser",function (req, res, next) {
