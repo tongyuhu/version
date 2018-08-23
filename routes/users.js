@@ -44,7 +44,7 @@ router.post("/showAccounts",function (req, res, next) {
 });
 
 router.post("/deleteUser",function (req, res, next) {
-    let id = req.body.id;
+    var id = req.body.id;
     connection.query('delete from user where id=?',[id],function (err, result) {
         res.end('delete user')
     })
