@@ -24,21 +24,16 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mobile` varchar(45) DEFAULT NULL,
+  `mobile` varchar(45) NOT NULL,
   `name` varchar(45) GENERATED ALWAYS AS (concat(_utf8mb3'awesome',`mobile`)) VIRTUAL,
-  PRIMARY KEY (`id`)
+  `password` varchar(45) NOT NULL,
+  `token` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `mobile_UNIQUE` (`mobile`),
+  UNIQUE KEY `token_UNIQUE` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `mobile`) VALUES (1,'18217281667'),(3,'18217281667'),(4,'18217281667');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -49,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-24 10:13:06
+-- Dump completed on 2018-08-24 11:58:10
