@@ -23,10 +23,8 @@ router.post('/showUser',function (req, res, next) {
 });
 
 router.post("/createUser",function (req, res, next) {
-    var firstName = req.body.first_name;
-    var lastName  = req.body.last_name;
-
-    connection.query('insert into user(first_name,last_name) values(?,?)',[firstName,lastName],function (err, result) {
+    var mobile = req.body.mobile;
+    connection.query('insert into user(mobile) values(?)',[mobile],function (err, result) {
         res.end('inset user')
     });
 });
